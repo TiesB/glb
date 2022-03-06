@@ -63,7 +63,12 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "proxyConfig": "apps/glb/proxy.conf.json"
+        "proxyConfig": "apps/glb/proxy.conf.json",
+        "browserTarget": "glb:build",
+        "port": 4200,
+        "ssl": true,
+        "disableHostCheck": true,
+        "watch": true
       }
     },
     "extract-i18n": {
