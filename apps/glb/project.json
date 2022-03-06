@@ -1,0 +1,91 @@
+{
+  "projectType": "application",
+  "root": "apps/glb",
+  "sourceRoot": "apps/glb/src",
+  "prefix": "glb",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/glb",
+        "index": "apps/glb/src/index.html",
+        "main": "apps/glb/src/main.ts",
+        "polyfills": "apps/glb/src/polyfills.ts",
+        "tsConfig": "apps/glb/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/glb/src/favicon.ico", "apps/glb/src/assets"],
+        "styles": ["apps/glb/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/glb/src/environments/environment.ts",
+              "with": "apps/glb/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "glb:build:production"
+        },
+        "development": {
+          "browserTarget": "glb:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/glb/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "glb:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/glb/src/**/*.ts", "apps/glb/src/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/glb"],
+      "options": {
+        "jestConfig": "apps/glb/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

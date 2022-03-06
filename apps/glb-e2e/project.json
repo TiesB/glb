@@ -1,0 +1,28 @@
+{
+  "root": "apps/glb-e2e",
+  "sourceRoot": "apps/glb-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/glb-e2e/cypress.json",
+        "devServerTarget": "glb:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "glb:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/glb-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["glb"]
+}
